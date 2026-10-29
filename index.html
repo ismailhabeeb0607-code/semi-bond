@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Little Birthday Surprise ❤️</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Georgia, serif;
+            background: #fff4dc;
+            color: #765b42;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .page.active {
+            display: flex;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1,
+        h2 {
+            font-weight: normal;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 15px;
+            line-height: 1.9;
+            margin-bottom: 15px;
+        }
+
+        .small {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #b08b68;
+        }
+
+        button {
+            cursor: pointer;
+            border: 1px solid #d7b98d;
+            background: #fff9ec;
+            color: #765b42;
+            padding: 12px 22px;
+            border-radius: 25px;
+            margin: 8px;
+            font-family: inherit;
+        }
+
+        button:hover {
+            background: #f1dfbd;
+        }
+
+        .heart {
+            font-size: 55px;
+            border: none;
+            background: transparent;
+            animation: heartbeat 1s infinite;
+        }
+
+        @keyframes heartbeat {
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .card {
+            width: 100%;
+            max-width: 500px;
+            padding: 30px 25px;
+            background: #fffdf7;
+            border: 1px solid #eadcc2;
+            box-shadow: 0 10px 30px #a8896320;
+            text-align: left;
+        }
+
+        .card h1 {
+            text-align: center;
+            font-size: 25px;
+        }
+
+        .signature {
+            text-align: right;
+            font-style: italic;
+        }
+
+        .envelope {
+            width: 250px;
+            height: 150px;
+            background: #ead7ad;
+            margin: 30px auto;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            font-size: 30px;
+            box-shadow: 0 10px 25px #a8896330;
+        }
+
+        .cake {
+            font-size: 100px;
+            border: none;
+            background: transparent;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 65px);
+            gap: 8px;
+            justify-content: center;
+            margin: 25px auto;
+        }
+
+        .keypad button {
+            height: 45px;
+            margin: 0;
+            border-radius: 6px;
+        }
+
+        .dots {
+            margin: 20px;
+            letter-spacing: 12px;
+            font-size: 24px;
+        }
+
+        #message {
+            color: #c44f62;
+            font-size: 12px;
+            min-height: 20px;
+        }
+
+        .gallery {
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .photos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 25px 0;
+        }
+
+        .photo {
+            min-height: 140px;
+            background: #ead8b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            font-size: 12px;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #confetti {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        #confetti span {
+            position: absolute;
+            top: -20px;
+            animation: fall 3s linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(720deg);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 23px 18px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+
+            .photos {
+                gap: 5px;
+            }
+
+            .photo {
+                min-height: 100px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="confetti"></div>
+
+    <!-- PAGE 1: WELCOME -->
+    <section class="page active" id="home">
+        <div>
+            <div class="small">A little surprise for you</div>
+            <button class="heart" onclick="showPage('letter')">💗</button>
+            <p class="small">Tap the heart</p>
+        </div>
+    </section>
+
+    <!-- PAGE 2: LETTER -->
+    <section class="page" id="letter">
+        <div>
+            <div class="small">Something special is waiting</div>
+            <div class="envelope" onclick="showPage('birthday')">💌</div>
+            <p>A Letter, Just For You</p>
+            <button onclick="showPage('birthday')">Open your letter →</button>
+        </div>
+    </section>
+
+    <!-- PAGE 3: BIRTHDAY MESSAGE -->
+    <section class="page" id="birthday">
+        <div class="card">
+            <h1>Happy Birthday ♡</h1>
+
+            <p>
+                Today is all about you, and I hope your day is filled
+                with the same happiness and warmth that you bring into my life.
+            </p>
+
+            <p>
+                You deserve every beautiful thing this world has to offer.
+                May your wishes come true, your smile never fade, and your
+                heart always find reasons to be happy.
+            </p>
+
+            <p>
+                Thank you for being you. You make ordinary moments feel
+                special, and I'm so grateful to have you in my life.
+            </p>
+
+            <p>
+                Here's to more memories, more laughter, and many more
+                beautiful birthdays together.
+            </p>
+
+            <p class="signature">With lots of love, ♥</p>
+
+            <div style="text-align:center">
+                <button onclick="showPage('cake')">
+                    Continue the surprise →
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 4: CAKE -->
+    <section class="page" id="cake">
+        <div>
+            <h1>Make a Wish! 🎂</h1>
+            <button class="cake" onclick="cutCake()">🎂</button>
+            <p id="cakeText">Tap the cake to celebrate!</p>
+            <button onclick="showPage('pin')">Next surprise →</button>
+        </div>
+    </section>
+
+    <!-- PAGE 5: SECRET PIN -->
+    <section class="page" id="pin">
+        <div>
+            <div style="font-size:35px">🔐</div>
+            <p class="small">One last little secret</p>
+            <h2>Unlock The Memories</h2>
+            <p>Hint: A special date</p>
+
+            <div class="dots" id="dots">○ ○ ○ ○</div>
+
+            <div class="keypad">
+                <button onclick="press('1')">1</button>
+                <button onclick="press('2')">2</button>
+                <button onclick="press('3')">3</button>
+                <button onclick="press('4')">4</button>
+                <button onclick="press('5')">5</button>
+                <button onclick="press('6')">6</button>
+                <button onclick="press('7')">7</button>
+                <button onclick="press('8')">8</button>
+                <button onclick="press('9')">9</button>
+                <button onclick="clearPin()">⌫</button>
+                <button onclick="press('0')">0</button>
+                <button onclick="checkPin()">↵</button>
+            </div>
+
+            <p id="message"></p>
+        </div>
+    </section>
+
+    <!-- PAGE 6: MEMORIES -->
+    <section class="page" id="memories">
+        <div class="gallery">
+            <div class="small">Little moments, big memories</div>
+            <h1>Special Memories ♡</h1>
+
+            <p>Every moment with you is a memory worth keeping.</p>
+
+            <div class="photos">
+                <div class="photo">
+                    <img src="c:\Users\Dell\Downloads\81t3GqCO29S._AC_UF894,1000_QL80_.jpg" alt="Our first memory">
+                </div>
+                <div class="photo">
+                    <img src="c:\Users\Dell\Downloads\whatapp.jpg.jpeg" alt="Our second memory">
+                </div>
+                <div class="photo">
+                    <img src="c:\Users\Dell\Downloads\fb385129279f771ed69f385164ca92c2.jpg" alt="Our third memory">
+                </div>
+            </div>
+
+            <p>Forever grateful for you. ❤️</p>
+            <button onclick="showPage('home')">Replay the surprise ↺</button>
+        </div>
+    </section>
+
+    <script>
+        let pin = "";
+        const correctPin = "1234"; // Change your secret PIN here
+
+        function showPage(id) {
+            document.querySelectorAll(".page").forEach(page => {
+                page.classList.remove("active");
+            });
+
+            document.getElementById(id).classList.add("active");
+            window.scrollTo(0, 0);
+        }
+
+        function cutCake() {
+            document.getElementById("cakeText").textContent =
+                "Happy Birthday! Your wish is on its way! ✨";
+
+            celebrate();
+        }
+
+        function celebrate() {
+            const box = document.getElementById("confetti");
+            box.innerHTML = "";
+
+            const colors = ["❤️", "💗", "✨", "💕", "🎉"];
+
+            for (let i = 0; i < 50; i++) {
+                const piece = document.createElement("span");
+
+                piece.textContent = colors[
+                    Math.floor(Math.random() * colors.length)
+                ];
+
+                piece.style.left = Math.random() * 100 + "%";
+                piece.style.fontSize = (12 + Math.random() * 15) + "px";
+                piece.style.animationDelay = Math.random() * 2 + "s";
+
+                box.appendChild(piece);
+            }
+
+            setTimeout(() => {
+                box.innerHTML = "";
+            }, 5000);
+        }
+
+        function press(number) {
+            if (pin.length >= 4) return;
+
+            pin += number;
+            updateDots();
+
+            if (pin.length === 4) checkPin();
+        }
+
+        function updateDots() {
+            document.getElementById("dots").textContent =
+                "● ".repeat(pin.length) + "○ ".repeat(4 - pin.length);
+        }
+
+        function clearPin() {
+            pin = pin.slice(0, -1);
+            updateDots();
+            document.getElementById("message").textContent = "";
+        }
+
+        function checkPin() {
+            if (pin === correctPin) {
+                document.getElementById("message").textContent = "";
+                showPage("memories");
+                celebrate();
+            } else {
+                document.getElementById("message").textContent =
+                    "Incorrect PIN. Try again ❤️";
+
+                pin = "";
+                updateDots();
+            }
+        }
+    </script>
+
+</body>
+
+</html>
